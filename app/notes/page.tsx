@@ -4,6 +4,7 @@ import { QueryClient, dehydrate, HydrationBoundary } from '@tanstack/react-query
 
 import { fetchNotes } from '@/lib/api';
 import NotesClient from './Notes.client';
+import css from './NotesPage.module.css';
 
 async function NotesContent() {
   await connection();
@@ -24,8 +25,10 @@ async function NotesContent() {
 
 export default function NotesPage() {
   return (
-    <Suspense fallback={<p>Loading, please wait...</p>}>
-      <NotesContent />
-    </Suspense>
+    <main className={css.app}>
+      <Suspense fallback={<p>Loading, please wait...</p>}>
+        <NotesContent />
+      </Suspense>
+    </main>
   );
 }

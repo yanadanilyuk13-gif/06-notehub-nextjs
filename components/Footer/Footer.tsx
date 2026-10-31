@@ -1,20 +1,15 @@
 'use client';
 
-import { useSyncExternalStore } from 'react';
+import { useEffect, useState } from 'react';
 import css from './Footer.module.css';
 
-const subscribe = () => () => {};
-
-function getYear() {
-  return new Date().getFullYear();
-}
-
-function getServerYear() {
-  return null;
-}
-
 export default function Footer() {
-  const year = useSyncExternalStore(subscribe, getYear, getServerYear);
+  const [year, setYear] = useState<number | null>(null);
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setYear(new Date().getFullYear());
+  }, []);
 
   return (
     <footer className={css.footer}>
